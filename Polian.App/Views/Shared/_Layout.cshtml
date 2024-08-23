@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title class="card-title">The Polian App</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Polian.App.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#sidebar-btn').click(function () {
+                $('#sidebar-wrapper').toggleClass('visible');
+                $('#wrapper').toggleClass('visible');
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <div id="wrapper" class="visible">
+        <!-- sidebar -->
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div id="sidebar-wrapper" class="visible">
+                <div id="sidebar-header">
+                    <h3></h3>
+                </div>
+                <ul class="sidebar-nav">
+                    <li><a asp-controller="Products" asp-action="Index"><span><i class="fa fa-tachometer"></i></span><span>Products</span></a></li>
+                    <li><a asp-controller="Coupon" asp-action="Index"><span><i class="fa fa-calendar"></i></span><span>Coupons</span></a></li>
+                    <li><a asp-controller="Order" asp-action="OrderIndex"><span><i class="fa fa-credit-card"></i></span><span>Orders</span></a></li>
+                    <li><a href="#"><span><i class="fa fa-cogs"></i></span><span>Settings</span></a></li>
+                    <li><a href="#"><span><i class="fa fa-life-ring"></i></span><span>Help</span></a></li>
+                </ul>
+                <div id="sidebar-btn">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </div>
+            </div>
+        }
+        <!-- end sidebar -->
+        <!-- main content -->
+        <header>
+            <nav style="margin-left:50px" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-body-tertiary box-shadow mb-3">
+                <div class="container-fluid">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">The Polian App</a>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="ShoppingCart" asp-action="CartIndex">
+                                        <i class="bi bi-cart"></i>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                        <ul class="navbar-nav ms-auto">
+                            @if (!User.Identity.IsAuthenticated)
+                            {
+                                <li class="nav-item">
+                                    @if (!ViewContext.RouteData.Values["action"].ToString().Equals("Login", StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        <a class="nav-link" asp-controller="Authentication" asp-action="Login">Login</a>
+                                    }
+                                </li>
+                                <li class="nav-item">
+                                    @if (!ViewContext.RouteData.Values["action"].ToString().Equals("Registeration", StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        <a class="nav-link" asp-controller="Authentication" asp-action="Registeration">Register</a>
+                                    }
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link">
+                                        <i class="bi bi-person-circle"></i> Hello, @User.Identity.Name
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Authentication" asp-action="Logout" title="Logout">
+                                        <i class="bi bi-folder-symlink-fill icon-hover"></i>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div id="page-content-wrapper">
+            <div id="main" class="container">
+                <main role="main" class="pb-3">
+                    <partial name="_SpinnerScreen" />
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="border-top footer text-muted bg-light">
+        <div class="container">
+            &copy; @DateTime.Now.Year - Polian.App - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

@@ -1,0 +1,240 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    background-image: url('/images/d.jpg');
+    margin-bottom: 0px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    transition: background 2s ease-in-out;
+}
+
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+}
+
+
+
+/* Style for the button when the sidebar is open */
+#toggleBtn.open {
+    left: 250px; /* Adjust this value based on your sidebar width */
+}
+
+.sidenav .fa {
+    margin-right: 10px;
+}
+
+.hideLi {
+}
+
+/*top bar*/
+
+.navbar {
+    background-color: #ffffff; /* Set background color to white */
+}
+
+.navbar-brand {
+    font-size: 1.5rem; /* Increase font size for the brand */
+    color: #000000; /* Set brand text color to black */
+}
+
+.navbar-nav .nav-link {
+    color: #000000; /* Set general text color to black */
+    margin-right: 15px; /* Add right margin to the links */
+    font-weight: 500; /* Set font weight to bold */
+}
+
+    .navbar-nav .nav-link:hover {
+        color: cadetblue; /* Change link color on hover */
+    }
+
+/* Style for the cart icon */
+.navbar-nav .bi-cart {
+    font-size: 1.2rem; /* Adjust cart icon size */
+}
+
+/* Style for the user icon */
+.navbar-nav .fa-user {
+    font-size: 1.2rem; /* Adjust user icon size */
+}
+
+/* Style for the logout icon */
+.navbar-nav .fa-sign-out-alt {
+    font-size: 1.2rem; /* Adjust logout icon size */
+}
+
+.hide {
+    display: none !important;
+}
+
+.show {
+    display: '';
+}
+
+
+/*spinner*/
+
+
+.overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the overlay background color and opacity as needed */
+    z-index: 9999; /* Ensure the overlay is on top of other elements */
+}
+
+.spinner-container {
+    text-align: center;
+}
+
+
+/* main content */
+#page-content-wrapper {
+    width: 100%;
+}
+
+/* sidebar minimized */
+#sidebar-wrapper {
+    background: #444444;
+    display: block;
+    position: fixed;
+    height: 100%;
+    z-index: 1;
+}
+
+    #sidebar-wrapper ul {
+        margin: 0px;
+        padding: 0px;
+    }
+
+        #sidebar-wrapper ul li {
+            list-style: none;
+        }
+
+            #sidebar-wrapper ul li i {
+                font-size: 24px;
+            }
+
+            #sidebar-wrapper ul li span:nth-child(2) {
+                display: none;
+            }
+
+            #sidebar-wrapper ul li a {
+                display: block;
+                padding: 12px 12px;
+                width: 50px;
+                color: #eeeeee;
+                background: #222222;
+                border-bottom: 1px solid #444444;
+            }
+
+                #sidebar-wrapper ul li a:hover {
+                    color: #aaaaaa;
+                    background-color: #444444;
+                    text-decoration: none;
+                }
+
+#sidebar-header {
+    height: 50px;
+    background: #444444;
+}
+
+    #sidebar-header h3 {
+        display: none;
+    }
+
+#sidebar-btn {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+    #sidebar-btn i {
+        font-size: 18px;
+        color: #ffffff;
+        padding: 16px;
+    }
+/* set element styles to fit tablet and higher(desktop) */
+
+/* sidebar visible */
+#sidebar-wrapper.visible {
+    left: 0px;
+}
+
+    #sidebar-wrapper.visible ul li span:nth-child(2) {
+        display: inline-block;
+    }
+
+    #sidebar-wrapper.visible ul li i {
+        color: #777777;
+        font-size: 14px;
+        min-width: 20px;
+        text-align: center;
+    }
+
+    #sidebar-wrapper.visible ul li a {
+        background: #222222;
+        color: #cccccc;
+        border-bottom: 1px solid #444444;
+        display: block;
+        width: 200px;
+        padding: 15px;
+        font-size: 14px;
+    }
+
+        #sidebar-wrapper.visible ul li a:hover {
+            background: #777777;
+            color: #eeeeee;
+        }
+
+    #sidebar-wrapper.visible h3 {
+        display: inline-block;
+        margin: 0px;
+        color: #fff
+    }
+
+#wrapper.visible #page-content-wrapper {
+    padding-left: 200px;
+}
+
+#wrapper.visible .navbar {
+    margin-left: 200px;
+}

@@ -1,0 +1,45 @@
+﻿
+<h1>Orders</h1>
+@await Component.InvokeAsync("Notyf")
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div class="card-body p-4"></div>
+<table id="myTable" class="table" style="width:100%">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                User name
+            </th>
+            <th>
+                Coupon Code
+            </th>
+            <th>
+                Discount
+            </th>
+            <th>
+                Order Total
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Phone Number
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Order Date
+            </th>
+            <th>
+                 Status
+            </th>
+        </tr>
+    </thead>
+</table>
+
+@section Scripts {
+    <script src="~/js/order.js"></script>
+}
