@@ -13,6 +13,17 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowApp",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:3000") // Angular app's origin
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+});
+
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("JwtOptions"));
 // Add services to the container.
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
@@ -96,7 +107,7 @@ app.UseSwaggerUI(c =>
 
 });
 //}
-
+app.UseCors("AllowApp");
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();

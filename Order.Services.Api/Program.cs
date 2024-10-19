@@ -8,6 +8,7 @@ using Order.Services.Api.Services;
 using Order.Services.Api.Services.IService;
 using Order.Services.Api.Data;
 using System.Text;
+using Polly;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -85,7 +86,8 @@ builder.Services.AddSingleton(mapper);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddHttpClient("Product",
-    m => m.BaseAddress = new Uri(builder.Configuration["ServiceUrls:ProductAPI"]));
+    m => m.BaseAddress = new Uri(builder.Configuration["ServiceUrls:ProductAPI"]))
+    .AddTransientHttpErrorPolicy(policy => policy.WaitAndRetryAsync(3, _ => TimeSpan.FromSeconds(3)));
 
 var app = builder.Build();
 
